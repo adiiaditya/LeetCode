@@ -1,0 +1,28 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+struct TreeNode* convertArray2BST(int* nums, int start, int end){
+     struct TreeNode* node = NULL;
+     int mid;
+     if(start > end)
+        return NULL;
+     mid = (start + end)/2;
+     node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+     node->left = node->right = NULL;
+     node->val = nums[mid];
+     node->left = convertArray2BST(nums, start, mid-1);
+     node->right = convertArray2BST(nums, mid+1, end);
+     return node;
+}
+ 
+ struct TreeNode* sortedArrayToBST(int* nums, int numsSize) {
+     if (numsSize == NULL){
+        return NULL;
+    }
+    return convertArray2BST(nums, 0, numsSize - 1);
+}
