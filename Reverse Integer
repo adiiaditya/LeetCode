@@ -1,0 +1,23 @@
+public class Solution {
+    public int Reverse(int x) {
+        long temp, reverse = 0;
+        temp = x;
+        
+        if(x>=1 && x<10)
+            return x;
+        
+        while(temp!=0){
+            reverse = reverse * 10;
+            reverse =  reverse + temp%10;
+            temp = temp/10;
+        }
+            
+        if( reverse < -2147483647 || reverse > 2147483647)
+        {
+            return 0;
+        }
+        else
+            if (reverse>0x7fffffff) return 0; //overflow check.
+            else return (int)reverse;
+    }
+}
