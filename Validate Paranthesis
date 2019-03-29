@@ -1,0 +1,24 @@
+public static bool ValidateParanthesis(string s){
+  Stack<char> stack = new Stack<char>();
+  for(int i = 0; i < s.Length; i++)
+  {
+    if(s[i] == '{' || s[i] == '[' || s[i] == '(') { stack.Push(s[i]); }
+    else
+    {
+      if (s[i] == '}' || s[i] == ']' || s[i] == ')')
+      {
+        switch(stack.Peek()){
+          case '{':
+          case '[':
+          case '(':
+            stack.Pop();  
+            break;
+          default:
+            stack.Push(s[i]);
+            break;
+        }
+      }
+    }
+  }
+  return stack.Count == 0;
+ }
